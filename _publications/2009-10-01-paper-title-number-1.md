@@ -1,11 +1,11 @@
 ---
-title: "Paper Title Number 1"
+title: "Rethinking Expert Training for Model Merging with Prompt Learning"
 collection: publications
 category: manuscripts
-permalink: /publication/2009-10-01-paper-title-number-1
+permalink: https://arxiv.org/abs/2607.24465
 excerpt: 'This paper is about the number 1. The number 2 is left for future work.'
-date: 2009-10-01
-venue: 'Journal 1'
+date: 29-07-2026
+venue: 'Pre-print'
 slidesurl: 'https://academicpages.github.io/files/slides1.pdf'
 paperurl: 'https://academicpages.github.io/files/paper1.pdf'
 bibtexurl: 'https://academicpages.github.io/files/bibtex1.bib'
