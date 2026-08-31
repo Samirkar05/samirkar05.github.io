@@ -27,7 +27,7 @@ author:
   name             : "Samir El Karrat Moreno"  
   bio              : "Research Fellow @ CVC | Physics & Maths @ UAB"
   location         : "Based in Warsaw, Poland"
-  employer         : "Autonomous University of Barcelona"
+  employer         : "Autonomous University <br>of Barcelona"
   uri              : # URL
   email            : "samiriyo05@gmail.com" 
 
@@ -37,7 +37,7 @@ author:
   googlescholar    : "https://scholar.google.com/citations?user=PS_CX0AAAAAJ"
   inspire-hep      : # URL
   impactstory      : # URL
-  orcid            : "https://orcid.org/yourorcidurl"
+  orcid            : # ORCID URL
   semantic         : # URL
   ssrn             : # URL
   pubmed           : # URL
@@ -56,7 +56,7 @@ author:
 
   # Social media
   artstation       : # Username
-  bluesky          : "bsky.app" # Replace this with you Bluesky username
+  bluesky          : # Username
   facebook         : # Username
   flickr           : # Username
   foursquare       : # Username
