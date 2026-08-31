@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "samirkar05"
+title: "Samir El Karrat Moreno"
 author_profile: true
 redirect_from:
   - /about/
