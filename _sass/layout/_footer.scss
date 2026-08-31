@@ -13,6 +13,7 @@
   margin-top: 3em;
   width: 100%;
   clear: both;
+  flex-shrink: 0;
 
   /* keep footer in normal document flow after the page content */
   height: auto;
