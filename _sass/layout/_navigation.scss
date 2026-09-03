@@ -205,13 +205,27 @@
   .visible-links {
     display: table;
 
+    @include breakpoint($large) {
+      display: flex;
+      align-items: center;
+      width: calc(100% - 5rem);
+    }
+
     li {
       display: table-cell;
       vertical-align: middle;
 
+      @include breakpoint($large) {
+        display: block;
+      }
+
       &:first-child {
         font-weight: bold;
         text-wrap: wrap;
+
+        @include breakpoint($large) {
+          margin-right: auto;
+        }
 
         a {
           margin-left: 0;
@@ -226,6 +240,10 @@
     }
 
     #theme-toggle {
+      @include breakpoint($large) {
+        margin-right: 3rem;
+      }
+
       a {
         width: 25px;
         display: flex;

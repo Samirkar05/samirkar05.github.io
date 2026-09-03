@@ -17,16 +17,42 @@ layout: default
 <div id="main" role="main">
   {% include sidebar.html %}
 
-  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+  <article class="page{% if page.page_class %} {{ page.page_class }}{% endif %}{% unless page.author_profile or layout.author_profile or page.sidebar %} page--no-sidebar{% endunless %}" itemscope itemtype="http://schema.org/CreativeWork">
     {% if page.title %}<meta itemprop="headline" content="{{ page.title | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
     {% if page.excerpt %}<meta itemprop="description" content="{{ page.excerpt | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
     {% if page.date %}<meta itemprop="datePublished" content="{{ page.date | date: "%B %d, %Y" }}">{% endif %}
     {% if page.modified %}<meta itemprop="dateModified" content="{{ page.modified | date: "%B %d, %Y" }}">{% endif %}
 
     <div class="page__inner-wrap">
+      {% if page.profile_image %}
+        <div class="about-page__profile">
+          <img src=
+            {% if page.profile_image contains "://" %}
+              "{{ page.profile_image }}"
+            {% else %}
+              "{{ page.profile_image | prepend: "/images/" | prepend: base_path }}"
+            {% endif %}
+            class="about-page__portrait"
+            alt="{{ page.profile_image_alt | default: page.title | escape }}"
+            fetchpriority="high">
+          {% if page.profile_links %}
+            <nav class="about-contact-links" aria-label="Contact links">
+              {% for profile_link in page.profile_links %}
+                <a href="{{ profile_link.url }}">{{ profile_link.label }}</a>{% unless forloop.last %}<span aria-hidden="true">/</span>{% endunless %}
+              {% endfor %}
+            </nav>
+          {% endif %}
+        </div>
+      {% endif %}
       {% unless page.header.overlay_color or page.header.overlay_image %}
         <header>
           {% if page.title %}<h1 class="page__title" itemprop="headline">{{ page.title | markdownify | remove: "<p>" | remove: "</p>" }}</h1>{% endif %}
+          {% if page.collection == 'publications' and page.authors %}
+            <p class="archive__item-authors">{{ page.authors }}</p>
+          {% endif %}
+          {% if page.collection == 'publications' and page.venue and page.date %}
+            <p class="archive__item-venue">Published in <i>{{ page.venue }}</i>, {{ page.date | date: "%Y" }}</p>
+          {% endif %}
           {% if page.read_time %}
             <p class="page__meta"><i class="fa fa-clock" aria-hidden="true"></i> {% include read-time.html %}</p>
           {% endif %}
@@ -36,7 +62,7 @@ layout: default
         
         {% if page.collection == 'teaching' %}
           <p> {{ page.type }}, <i>{{ page.venue }}</i>, {{ page.date | default: "1900-01-01" | date: "%Y" }} </p>
-        {% elsif page.venue and page.date %}
+        {% elsif page.collection != 'publications' and page.venue and page.date %}
           <p>Published in <i>{{ page.venue }}</i>, {{ page.date | default: "1900-01-01" | date: "%Y" }} </p>
         {% elsif page.date %}
           <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].date_label | default: "Published:" }}</strong> <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | default: "1900-01-01" | date: "%B %d, %Y" }}</time></p>
@@ -47,7 +73,15 @@ layout: default
       <section class="page__content" itemprop="text">
         {{ content }}
 
-        {% if page.citation and page.paperurl and page.slidesurl and page.bibtexurl %}
+        {% if page.collection == 'publications' %}
+          {% if page.paperurl or page.slidesurl or page.bibtexurl %}
+            <p class="archive__item-links">
+              {% if page.paperurl %}<a href="{{ page.paperurl }}">Paper</a>{% endif %}
+              {% if page.slidesurl %}{% if page.paperurl %} | {% endif %}<a href="{{ page.slidesurl }}">Slides</a>{% endif %}
+              {% if page.bibtexurl %}{% if page.paperurl or page.slidesurl %} | {% endif %}<a href="{{ page.bibtexurl }}">BibTeX</a>{% endif %}
+            </p>
+          {% endif %}
+        {% elsif page.citation and page.paperurl and page.slidesurl and page.bibtexurl %}
           <p style="font-size: smaller">Recommended citation: {{ page.citation }}<br /><a href="{{ page.paperurl }}">Download Paper</a> | <a href="{{ page.slidesurl }}">Download Slides</a> | <a href="{{ page.bibtexurl }}">Download Bibtex</a></p>
         {% elsif page.citation and page.paperurl and page.slidesurl %}
           <p style="font-size: smaller">Recommended citation: {{ page.citation }}<br /><a href="{{ page.paperurl }}">Download Paper</a> | <a href="{{ page.slidesurl }}">Download Slides</a></p>

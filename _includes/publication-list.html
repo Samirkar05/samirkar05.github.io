@@ -1,0 +1,6 @@
+<div class="publication-list">
+  {% assign publications = site.publications | sort: "date" | reverse %}
+  {% for post in publications %}
+    {% include archive-single.html show_publication_links=include.show_links show_publication_excerpt=include.show_excerpt %}
+  {% endfor %}
+</div>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title description">
+  <title id="title">Publication image placeholder</title>
+  <desc id="description">A neutral document icon representing a publication.</desc>
+  <rect width="1200" height="675" fill="#f3f4f5"/>
+  <rect x="440" y="105" width="320" height="405" rx="8" fill="#ffffff" stroke="#a5abb0" stroke-width="8"/>
+  <path d="M650 105v120h110" fill="#e3e6e8" stroke="#a5abb0" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M500 290h200M500 345h200M500 400h145" fill="none" stroke="#6b7278" stroke-width="14" stroke-linecap="round"/>
+  <text x="600" y="585" fill="#4f565c" font-family="Arial, sans-serif" font-size="42" text-anchor="middle">Publication</text>
+</svg>
